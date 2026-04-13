@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — Posty</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  color: #fff; line-height: 1.6; min-height: 100vh;
+  background: #1a0a2e;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(131,58,180,0.4), transparent),
+    radial-gradient(ellipse 70% 50% at 80% 20%, rgba(225,48,108,0.3), transparent),
+    radial-gradient(ellipse 60% 50% at 50% 60%, rgba(193,53,132,0.2), transparent),
+    radial-gradient(ellipse 80% 60% at 70% 90%, rgba(245,96,64,0.2), transparent);
+}
+a { color: rgba(255,255,255,0.7); text-decoration: none; }
+a:hover { color: #fff; }
+.container { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+.back { font-size: 14px; color: rgba(255,255,255,0.45); display: inline-block; margin-bottom: 32px; }
+.header { text-align: center; margin-bottom: 40px; }
+.eyebrow { font-size: 13px; color: rgba(255,255,255,0.5); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 12px; }
+h1 { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; line-height: 1.1; }
+.subtitle { font-size: 16px; color: rgba(255,255,255,0.55); max-width: 460px; margin: 0 auto; }
+
+.plans { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
+@media (min-width: 640px) { .plans { grid-template-columns: 1fr 1fr; gap: 20px; } }
+
+.plan {
+  position: relative;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 28px; padding: 32px 28px;
+}
+.plan.featured {
+  background: rgba(255,255,255,0.08);
+  padding: 34px 28px;
+}
+.plan.featured::before {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: 29px;
+  padding: 1px;
+  background: linear-gradient(135deg, #833ab4, #e1306c, #f56040);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  pointer-events: none;
+}
+.badge {
+  position: absolute; top: -10px; right: 20px;
+  background: linear-gradient(135deg, #833ab4, #e1306c, #f56040);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.4px;
+  padding: 5px 10px; border-radius: 999px; text-transform: uppercase;
+}
+.plan-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.3px; margin-bottom: 14px; text-transform: uppercase; }
+.price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; }
+.price { font-size: 36px; font-weight: 800; letter-spacing: -1px; }
+.period { font-size: 14px; color: rgba(255,255,255,0.5); }
+.price-sub { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 20px; min-height: 18px; }
+
+.cta {
+  display: block; width: 100%; text-align: center;
+  padding: 14px 20px; border-radius: 14px;
+  font-size: 15px; font-weight: 700;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff; margin-bottom: 24px;
+  transition: background 0.2s;
+}
+.cta:hover { background: rgba(255,255,255,0.14); color: #fff; }
+.cta.primary {
+  background: linear-gradient(135deg, #833ab4, #e1306c, #f56040);
+  border: none;
+}
+.cta.primary:hover { filter: brightness(1.1); color: #fff; }
+
+.features { list-style: none; padding: 0; margin: 0; }
+.features li {
+  font-size: 14px; color: rgba(255,255,255,0.75);
+  padding: 8px 0; padding-left: 26px; position: relative;
+}
+.features li::before {
+  content: '';
+  position: absolute; left: 0; top: 13px;
+  width: 14px; height: 14px;
+  background: linear-gradient(135deg, #833ab4, #e1306c, #f56040);
+  border-radius: 999px;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M20 6L9 17l-5-5' stroke='black' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / 10px no-repeat;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M20 6L9 17l-5-5' stroke='black' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / 10px no-repeat;
+}
+
+.trial-note {
+  text-align: center;
+  font-size: 13px; color: rgba(255,255,255,0.45);
+  margin-top: 8px;
+}
+.trial-note strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+
+.footer {
+  text-align: center; margin-top: 48px;
+  font-size: 13px; color: rgba(255,255,255,0.35);
+}
+.footer a { color: rgba(255,255,255,0.55); margin: 0 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+<a href="/" class="back">&larr; Back</a>
+
+<div class="header">
+  <div class="eyebrow">Pricing</div>
+  <h1>Simple pricing.<br>Cancel anytime.</h1>
+  <p class="subtitle">Start with a 7-day free trial. Every plan includes everything — no usage caps, no feature gates.</p>
+</div>
+
+<div class="plans">
+  <div class="plan">
+    <div class="plan-name">Monthly</div>
+    <div class="price-row">
+      <span class="price">$29.99</span>
+      <span class="period">/ month</span>
+    </div>
+    <div class="price-sub">Billed monthly</div>
+    <a href="/" class="cta">Start 7-day free trial</a>
+    <ul class="features">
+      <li>Unlimited video sessions</li>
+      <li>AI-written posts in your voice</li>
+      <li>Auto-scheduled content calendar</li>
+      <li>Post directly to all platforms</li>
+      <li>AI-generated scripts &amp; teleprompter</li>
+      <li>Smart notifications</li>
+    </ul>
+  </div>
+
+  <div class="plan featured">
+    <div class="badge">Save 44%</div>
+    <div class="plan-name">Annual</div>
+    <div class="price-row">
+      <span class="price">$16.67</span>
+      <span class="period">/ month</span>
+    </div>
+    <div class="price-sub">$199.99 billed yearly</div>
+    <a href="/" class="cta primary">Start 7-day free trial</a>
+    <ul class="features">
+      <li>Everything in Monthly</li>
+      <li>Unlimited video sessions</li>
+      <li>AI-written posts in your voice</li>
+      <li>Auto-scheduled content calendar</li>
+      <li>Post directly to all platforms</li>
+      <li>Priority access to new features</li>
+    </ul>
+  </div>
+</div>
+
+<p class="trial-note"><strong>7 days free.</strong> Payment is charged after the trial. Cancel anytime in Settings.</p>
+
+<div class="footer">
+  <a href="/privacy">Privacy</a>·
+  <a href="/terms">Terms</a>·
+  <a href="mailto:davidtza100@gmail.com">Contact</a>
+</div>
+</div>
+</body>
+</html>
